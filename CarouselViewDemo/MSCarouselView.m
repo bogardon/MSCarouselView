@@ -74,7 +74,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 - (void) setDataSource:(id<MSCarouselViewDataSource>)dataSource {
     if (_dataSource != dataSource) {
         _dataSource = dataSource;
-        [self reloadData];
+        [self performSelector:selector(reloadData) withObject:nil afterDelay:0];
     }
 }
 
