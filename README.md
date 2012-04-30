@@ -19,9 +19,10 @@ There are 3 required dataSource methods
     - (UIView *) carouselView:(MSCarouselView *)carouselView viewForIndex:(NSUInteger)index;
     - (CGFloat) carouselView:(MSCarouselView *)carouselView widthForViewAtIndex:(NSUInteger)index;
     
-and one optional delegate method (the delegate protocol extends UIScrollViewDelegate)
+and two optional delegate method (the delegate protocol extends UIScrollViewDelegate)
 
     - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView;
+    - (void) carouselView:(MSCarouselView *)carouselView didSelectViewAtIndex:(NSUInteger)index;
     
 # License
 

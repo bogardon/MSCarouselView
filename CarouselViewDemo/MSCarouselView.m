@@ -12,6 +12,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
     return [NSNumber numberWithInt:index];
 }
 
+
 @interface MSCarouselView ()
 
 @property (nonatomic, retain) NSMutableDictionary *visibleViews;
@@ -24,6 +25,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 - (void) _onTap:(UIGestureRecognizer *)recognizer;
 - (void) _addOrRemoveViewsIfNecessary;
 - (void) _enqueueView:(UIView *)view;
+- (void) _enqueueViewsInArray:(NSArray *)views;
 - (NSUInteger) _clampedIndex:(NSUInteger)index;
 
 @end
@@ -81,12 +83,8 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 
 - (void) reloadData {
 
-    [self.visibleViews enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self _enqueueView:obj];
-    }];
+    [self _enqueueViewsInArray:self.visibleViews.allValues];
     
-    [self.visibleViews.allValues makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        
     [self.visibleViews removeAllObjects];
     
     [self.rectsForViews removeAllObjects];
@@ -101,7 +99,6 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
         self.enableWrap = [self.delegate carouselViewShouldWrap:self];
     }
     
-        
     self.numberOfViewsNecessaryForWrap = 0;
     
     if (self.enableWrap) {
@@ -158,14 +155,24 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 }
 
 - (void) _enqueueView:(UIView *)view {
+    [view removeFromSuperview];
     NSString *classKey = NSStringFromClass([view class]);
     NSMutableSet *set = [self.reusableViews objectForKey:classKey];
-    if (set == nil) {
+    
+    if (set == nil && classKey) {
         set = [NSMutableSet set];
         [self.reusableViews setObject:set forKey:classKey];
     }
+    
+    if (view) {
+        [set addObject:view];
+    }
+}
 
-    [set addObject:view];
+- (void) _enqueueViewsInArray:(NSArray *)views {
+    [views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self _enqueueView:obj];
+    }];
 }
 
 - (void) _addOrRemoveViewsIfNecessary {
@@ -176,11 +183,9 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
         if (CGRectIntersectsRect(self.bounds, view.frame) == NO) {
             [keysToRemove addObject:key];
             [viewsToRemove addObject:obj];
-            [self _enqueueView:view];
         }
-        
     }];
-    [viewsToRemove makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self _enqueueViewsInArray:viewsToRemove];
     [self.visibleViews removeObjectsForKeys:keysToRemove];
     
     [self.rectsForViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -194,7 +199,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
                 [self insertSubview:view atIndex:0];
                 [self.visibleViews setObject:view forKey:KeyForIndex(askIndex)];
                 
-                if (view.gestureRecognizers.count == 0) {
+                if (view.gestureRecognizers.count == 0 && [self.delegate respondsToSelector:@selector(carouselView:didSelectViewAtIndex:)]) {
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
                     [view addGestureRecognizer:tap];
                     [tap release];
