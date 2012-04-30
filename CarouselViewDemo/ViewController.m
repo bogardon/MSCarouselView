@@ -214,7 +214,7 @@
     return YES;
 }
 
-- (void) carouselView:(MSCarouselView *)carouselView didSelectViewAtIndex:(NSUInteger)index {
+- (void) carouselView:(MSCarouselView *)carouselView didTapViewAtIndex:(NSUInteger)index {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert" message:[NSString stringWithFormat:@"you tapped view %u", index] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
     [alert show];
     [alert release];

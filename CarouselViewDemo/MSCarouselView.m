@@ -145,8 +145,8 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 #pragma mark - Private Methods
 
 - (void) _onTap:(UIGestureRecognizer *)recognizer {
-    if (recognizer.state == UIGestureRecognizerStateEnded && [self.delegate respondsToSelector:@selector(carouselView:didSelectViewAtIndex:)]) {
-        [self.delegate carouselView:self didSelectViewAtIndex:recognizer.view.tag];
+    if (recognizer.state == UIGestureRecognizerStateEnded && [self.delegate respondsToSelector:@selector(carouselView:didTapViewAtIndex:)]) {
+        [self.delegate carouselView:self didTapViewAtIndex:recognizer.view.tag];
     }
 }
 
@@ -199,7 +199,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
                 [self insertSubview:view atIndex:0];
                 [self.visibleViews setObject:view forKey:KeyForIndex(askIndex)];
                 
-                if (view.gestureRecognizers.count == 0 && [self.delegate respondsToSelector:@selector(carouselView:didSelectViewAtIndex:)]) {
+                if (view.gestureRecognizers.count == 0 && [self.delegate respondsToSelector:@selector(carouselView:didTapViewAtIndex:)]) {
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
                     [view addGestureRecognizer:tap];
                     [tap release];
