@@ -203,7 +203,6 @@
     
     view.backgroundColor = [self.rainbowColors objectAtIndex:index];
     
-    
     return view;
 }
 
@@ -213,6 +212,12 @@
 
 - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView {
     return YES;
+}
+
+- (void) carouselView:(MSCarouselView *)carouselView didSelectViewAtIndex:(NSUInteger)index {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"alert" message:[NSString stringWithFormat:@"you tapped view %u", index] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
 }
 
 @end

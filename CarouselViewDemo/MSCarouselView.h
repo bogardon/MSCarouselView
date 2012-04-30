@@ -22,6 +22,7 @@
 
 @optional
 - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView;
+- (void) carouselView:(MSCarouselView *)carouselView didSelectViewAtIndex:(NSUInteger)index;
 
 @end
 

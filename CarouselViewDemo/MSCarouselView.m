@@ -21,6 +21,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 @property (nonatomic, assign) BOOL enableWrap;
 @property (nonatomic, retain) NSMutableArray *rectsForViews;
 
+- (void) _onTap:(UIGestureRecognizer *)recognizer;
 - (void) _addOrRemoveViewsIfNecessary;
 - (void) _enqueueView:(UIView *)view;
 - (NSUInteger) _clampedIndex:(NSUInteger)index;
@@ -146,6 +147,12 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
 
 #pragma mark - Private Methods
 
+- (void) _onTap:(UIGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded && [self.delegate respondsToSelector:@selector(carouselView:didSelectViewAtIndex:)]) {
+        [self.delegate carouselView:self didSelectViewAtIndex:recognizer.view.tag];
+    }
+}
+
 - (NSUInteger) _clampedIndex:(NSUInteger)index {
     return self.enableWrap ? (index-self.numberOfViewsNecessaryForWrap+self.numberOfViews)%self.numberOfViews : index;
 }
@@ -157,8 +164,8 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
         set = [NSMutableSet set];
         [self.reusableViews setObject:set forKey:classKey];
     }
-    [set addObject:view];
 
+    [set addObject:view];
 }
 
 - (void) _addOrRemoveViewsIfNecessary {
@@ -183,8 +190,15 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
             UIView *view = [self.dataSource carouselView:self viewForIndex:askIndex];
             if (view) {
                 view.frame = rect;
+                view.tag = askIndex;
                 [self insertSubview:view atIndex:0];
                 [self.visibleViews setObject:view forKey:KeyForIndex(askIndex)];
+                
+                if (view.gestureRecognizers.count == 0) {
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTap:)];
+                    [view addGestureRecognizer:tap];
+                    [tap release];
+                }
             }
         }
     }];
