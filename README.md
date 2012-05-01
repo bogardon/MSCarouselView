@@ -22,8 +22,12 @@ There are 3 required dataSource methods
 and two optional delegate method (the delegate protocol extends UIScrollViewDelegate)
 
     - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView;
-    - (void) carouselView:(MSCarouselView *)carouselView didSelectViewAtIndex:(NSUInteger)index;
-    
+    - (void) carouselView:(MSCarouselView *)carouselView didTapViewAtIndex:(NSUInteger)index;
+
+# Caution
+
+MSCarouselView does not support multiple orientations yet.
+
 # License
 
 MSCarouselView is available under the MIT License. See LICENSE for more info.
