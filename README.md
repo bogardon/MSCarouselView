@@ -24,10 +24,6 @@ and two optional delegate method (the delegate protocol extends UIScrollViewDele
     - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView;
     - (void) carouselView:(MSCarouselView *)carouselView didTapViewAtIndex:(NSUInteger)index;
 
-# Caution
-
-MSCarouselView does not support multiple orientations yet.
-
 # License
 
 MSCarouselView is available under the MIT License. See LICENSE for more info.
