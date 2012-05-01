@@ -189,6 +189,10 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.carousel reloadData];
+}
+
 #pragma mark - MSCarousel
 
 - (NSUInteger) numberOfViewsForCarousel:(MSCarouselView *)carouselView {
