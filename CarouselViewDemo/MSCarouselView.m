@@ -89,7 +89,7 @@ static inline NSNumber * KeyForIndex(NSUInteger index) {
     
     [self.rectsForViews removeAllObjects];
     
-    self.numberOfViews = [self.dataSource numberOfViewsForCarousel:self];
+    self.numberOfViews = [self.dataSource numberOfViewsForCarouselView:self];
     
     if (self.numberOfViews == 0) {
         return;

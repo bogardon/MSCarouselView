@@ -195,7 +195,7 @@
 
 #pragma mark - MSCarousel
 
-- (NSUInteger) numberOfViewsForCarousel:(MSCarouselView *)carouselView {
+- (NSUInteger) numberOfViewsForCarouselView:(MSCarouselView *)carouselView {
     return self.rainbowColors.count;
 }
 

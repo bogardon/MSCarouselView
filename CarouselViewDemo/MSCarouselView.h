@@ -13,7 +13,7 @@
 @protocol MSCarouselViewDataSource <NSObject>
 
 - (UIView *) carouselView:(MSCarouselView *)carouselView viewForIndex:(NSUInteger)index;
-- (NSUInteger) numberOfViewsForCarousel:(MSCarouselView *)carouselView;
+- (NSUInteger) numberOfViewsForCarouselView:(MSCarouselView *)carouselView;
 - (CGFloat) carouselView:(MSCarouselView *)carouselView widthForViewAtIndex:(NSUInteger)index;
 
 @end
