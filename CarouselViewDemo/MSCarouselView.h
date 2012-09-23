@@ -16,6 +16,9 @@
 - (NSUInteger) numberOfViewsForCarouselView:(MSCarouselView *)carouselView;
 - (CGFloat) carouselView:(MSCarouselView *)carouselView widthForViewAtIndex:(NSUInteger)index;
 
+@optional
+- (CGFloat) bufferInsetForCarouselView:(MSCarouselView *)carouselView;
+
 @end
 
 @protocol MSCarouselViewDelegate <NSObject, UIScrollViewDelegate>
@@ -27,11 +30,13 @@
 @end
 
 @interface MSCarouselView : UIScrollView {
-    
+
 }
 
 - (void) reloadData;
 - (UIView *) dequeueReusableViewWithClass:(Class)klass;
+- (void) scrollToIndex:(NSUInteger)index animated:(BOOL)animated;
+- (NSUInteger) indexOfViewAtPoint:(CGPoint)point;
 
 @property (nonatomic, assign) id <MSCarouselViewDataSource> dataSource;
 @property (nonatomic, assign) id <MSCarouselViewDelegate> delegate;
