@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72664ABC160F2A1D00B9E819 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 72664ABB160F2A1D00B9E819 /* README.md */; };
 		7272D0A2154A5D17007991B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7272D0A1154A5D17007991B8 /* UIKit.framework */; };
 		7272D0A4154A5D17007991B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7272D0A3154A5D17007991B8 /* Foundation.framework */; };
 		7272D0A6154A5D17007991B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7272D0A5154A5D17007991B8 /* CoreGraphics.framework */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72664ABB160F2A1D00B9E819 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7272D09D154A5D17007991B8 /* CarouselViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7272D0A1154A5D17007991B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7272D0A3154A5D17007991B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,7 @@
 		7272D092154A5D16007991B8 = {
 			isa = PBXGroup;
 			children = (
+				72664ABB160F2A1D00B9E819 /* README.md */,
 				7272D0A7154A5D17007991B8 /* CarouselViewDemo */,
 				7272D0A0154A5D17007991B8 /* Frameworks */,
 				7272D09E154A5D17007991B8 /* Products */,
@@ -164,6 +167,7 @@
 			files = (
 				7272D0AC154A5D17007991B8 /* InfoPlist.strings in Resources */,
 				7272D0B8154A5D17007991B8 /* ViewController.xib in Resources */,
+				72664ABC160F2A1D00B9E819 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				7272D0BD154A5D17007991B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

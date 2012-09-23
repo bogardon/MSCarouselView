@@ -19,6 +19,10 @@ There are 3 required dataSource methods
     - (UIView *) carouselView:(MSCarouselView *)carouselView viewForIndex:(NSUInteger)index;
     - (CGFloat) carouselView:(MSCarouselView *)carouselView widthForViewAtIndex:(NSUInteger)index;
     
+and one optional dataSource method that lets you control which the left/right insets that determine which views are to be rendered. (this is especially useful if you choose to have clipsToBounds set to NO)
+
+    - (CGFloat) bufferInsetForCarouselView:(MSCarouselView *)carouselView;
+    
 and two optional delegate method (the delegate protocol extends UIScrollViewDelegate)
 
     - (BOOL) carouselViewShouldWrap:(MSCarouselView *)carouselView;
